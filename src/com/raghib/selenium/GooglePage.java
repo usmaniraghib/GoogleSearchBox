@@ -14,7 +14,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class GooglePage {
 	
 	public static String url = "http://www.google.com";
-	public static String googleSearchBox = "//input[@name='q']";
+	public static String googleSearchBox = "//*[@id='APjFqb']";
 	public static String linkPath = "//body/div[@id='main']/div[@id='cnt']/div[@id='rcnt']/div[@id='center_col']/div[@id='res']/div[@id='search']/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/a[1]/h3[1]";
 	public static void main(String[] args) throws InterruptedException {
 
