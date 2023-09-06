@@ -6,30 +6,33 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class GooglePage {
-	
+public class GooglePage extends BaseClass {
+
+	public static WebDriver driver;
+	public static String browserName = "chrome";
+	public static String browserVersion = "116";
+
 	public static String url = "http://www.google.com";
 	public static String googleSearchBox = "//*[@id='APjFqb']";
 	public static String linkPath = "//*[@id=\"rso\"]/div[1]/div/div/div/div/div/div/div/div[1]/div/a/h3";
+
 	public static void main(String[] args) throws InterruptedException {
-
-		System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "\\Driver\\chromedriver.exe");
-		WebDriver driver = new ChromeDriver();
-
-		driver.get(url);
+		// Chrome Browser
+		driver = BaseClass.getDriver(browserName, browserVersion);
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
 		driver.manage().window().maximize();
-		
+		driver.get(url);
+
 		WebElement element = driver.findElement(By.xpath(googleSearchBox));
-		
+
 		Duration duration = Duration.ofSeconds(30);
-		
+
 		WebDriverWait wait = new WebDriverWait(driver, duration);
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(googleSearchBox)));
-		
+
 		element.sendKeys("selenium");
 		element.sendKeys(Keys.ENTER);
 
@@ -37,6 +40,6 @@ public class GooglePage {
 		wait1.until(ExpectedConditions.elementToBeClickable((By.xpath(linkPath)))).click();
 
 		Thread.sleep(5000);
-		driver.quit();
+		BaseClass.quitDriver();
 	}
 }
